@@ -28,7 +28,7 @@ struct ScaleSlider: View {
           .clipShape(Capsule())
         
         Rectangle()
-          .foregroundColor(Color.progressBar)
+          .foregroundColor(Color.brandBlue)
           .frame(width: sliderWidth(from: width), height: sliderHeight)
           .clipShape(Capsule())
         

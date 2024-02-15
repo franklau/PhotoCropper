@@ -14,7 +14,7 @@ extension Color {
     return Color(hex: 0xEAECF0)
   }
   
-  static var progressBar: Color {
+  static var brandBlue: Color {
     return Color(hex: 0x326DF7)
   }
   
@@ -27,10 +27,6 @@ extension Color {
   }
   
   static var buttonSecondaryFG: Color {
-    return Color(hex: 0x344054)
-  }
-  
-  static var buttonSecondaryBG: Color {
     return Color(hex: 0x344054)
   }
   
