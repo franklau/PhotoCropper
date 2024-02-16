@@ -23,6 +23,7 @@
 		0122BE6C2B7DD4610004E0E6 /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE6B2B7DD4610004E0E6 /* UIImage+Helpers.swift */; };
 		0122BE6F2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE6E2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift */; };
 		0122BE712B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE702B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift */; };
+		0122BE742B7ED29C0004E0E6 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE732B7ED29C0004E0E6 /* ImageUploader.swift */; };
 		017D07052B7D456C008F13AB /* PhotoCropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07042B7D456C008F13AB /* PhotoCropperApp.swift */; };
 		017D07072B7D456C008F13AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07062B7D456C008F13AB /* ContentView.swift */; };
 		017D07092B7D456F008F13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017D07082B7D456F008F13AB /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		0122BE6B2B7DD4610004E0E6 /* UIImage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
 		0122BE6E2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueButtonStyle.swift; sourceTree = "<group>"; };
 		0122BE702B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButtonStyle.swift; sourceTree = "<group>"; };
+		0122BE732B7ED29C0004E0E6 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		017D07012B7D456C008F13AB /* PhotoCropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017D07042B7D456C008F13AB /* PhotoCropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropperApp.swift; sourceTree = "<group>"; };
 		017D07062B7D456C008F13AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
+		0122BE722B7ED2880004E0E6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				0122BE732B7ED29C0004E0E6 /* ImageUploader.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		017D06F82B7D456C008F13AB = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		017D07032B7D456C008F13AB /* PhotoCropper */ = {
 			isa = PBXGroup;
 			children = (
+				0122BE722B7ED2880004E0E6 /* Networking */,
 				0122BE6D2B7DD8490004E0E6 /* ButtonStyles */,
 				0122BE642B7D98D50004E0E6 /* Views */,
 				01105AD02B7D4EC20095DF89 /* Extensions */,
@@ -363,6 +374,7 @@
 				0122BE6C2B7DD4610004E0E6 /* UIImage+Helpers.swift in Sources */,
 				017D07052B7D456C008F13AB /* PhotoCropperApp.swift in Sources */,
 				0122BE6F2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift in Sources */,
+				0122BE742B7ED29C0004E0E6 /* ImageUploader.swift in Sources */,
 				0122BE6A2B7DA10A0004E0E6 /* Color+Theme.swift in Sources */,
 				0122BE662B7D9AFA0004E0E6 /* Path+Clip.swift in Sources */,
 			);

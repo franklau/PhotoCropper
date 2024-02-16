@@ -134,8 +134,14 @@ struct ContentView: View {
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
         let radius = (screenWidth - 2 * circlePadding) / 2.0
-        let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius)
-        savedImage = croppedImage!
+        let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius)        
+          ImageUploader.shared.uploadImage(image: croppedImage!) { image, error in
+            if let error = error {
+              print("error \(error)")
+            } else if let image = image {
+              savedImage = image
+            }
+          }
       }) {
         Text("Upload Headshot")
           .frame(maxWidth: .infinity)
