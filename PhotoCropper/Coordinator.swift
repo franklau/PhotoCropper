@@ -8,10 +8,11 @@
 import Foundation
 
 enum Screen {
+  case profile
   case imageCropper
-  case imageProcessing( ImageProcessingViewModel )
+  case imageProcessingProgress( ImageProcessingViewModel )
 }
 
 class Coordinator: ObservableObject {
-  @Published var rootScreen: Screen = .imageCropper
+  @Published var rootScreen: Screen = .profile
 }

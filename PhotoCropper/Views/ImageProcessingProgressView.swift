@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ImageProcessingView: View {
+struct ImageProcessingProgressView: View {
   @StateObject var viewModel: ImageProcessingViewModel
   let loadingImageSideLength = 200.0
   @State var hasStartedUpload = false
@@ -52,6 +52,6 @@ struct ImageProcessingView: View {
 
 struct ImageProcessingView_Previews: PreviewProvider {
     static var previews: some View {
-      ImageProcessingView(viewModel: ImageProcessingViewModel(image: UIImage(imageLiteralResourceName: "image")))
+      ImageProcessingProgressView(viewModel: ImageProcessingViewModel(image: UIImage(imageLiteralResourceName: "image")))
     }
 }

@@ -20,4 +20,8 @@ extension Font {
   static func boldInter(size: CGFloat) -> Font {
     return Font.custom("Inter-Bold", size: size)
   }
+  
+  static func lightInter(size: CGFloat) -> Font {
+    return Font.custom("Inter-Light", size: size)
+  }
 }

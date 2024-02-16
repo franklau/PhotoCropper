@@ -133,7 +133,7 @@ struct ImageCropperView: View {
         let radius = (screenWidth - 2 * circlePadding) / 2.0
         if let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius) {
           let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
-          coordinator.rootScreen = .imageProcessing(imageProcessorViewModel)
+          coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
         }
       }) {
         Text("Upload Headshot")

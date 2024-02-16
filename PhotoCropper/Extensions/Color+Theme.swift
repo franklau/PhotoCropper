@@ -18,7 +18,7 @@ extension Color {
     return Color(hex: 0x326DF7)
   }
   
-  static var navBar: Color {
+  static var utilityGray50: Color {
     return Color(hex: 0xF9FAFB)
   }
   
@@ -36,6 +36,18 @@ extension Color {
   
   static var dropShadow: Color {
     return Color(hex: 0x101828)
+  }
+  
+  static var primary: Color {
+    return Color(hex: 0x2979FF)
+  }
+  
+  static var secondary: Color {
+    return Color(hex: 0xDFEBFF)
+  }
+  
+  static var utilityBody: Color {
+    return Color(hex: 0x27272A)
   }
   
   static var buttonTertiearyFG: Color {

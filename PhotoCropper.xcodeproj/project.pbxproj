@@ -24,11 +24,13 @@
 		0122BE6F2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE6E2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift */; };
 		0122BE712B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE702B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift */; };
 		0122BE742B7ED29C0004E0E6 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE732B7ED29C0004E0E6 /* ImageUploader.swift */; };
-		0122BE762B7EFE9F0004E0E6 /* ImageProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE752B7EFE9F0004E0E6 /* ImageProcessingView.swift */; };
+		0122BE762B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE752B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift */; };
 		0122BE792B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE782B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift */; };
 		0122BE7B2B7F15B40004E0E6 /* SwiftUIGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE7A2B7F15B40004E0E6 /* SwiftUIGIF.swift */; };
 		0122BE7E2B7F24390004E0E6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE7D2B7F24390004E0E6 /* ContentView.swift */; };
 		0122BE822B7F268A0004E0E6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE812B7F268A0004E0E6 /* Coordinator.swift */; };
+		0122BE842B7FEF220004E0E6 /* SelectedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE832B7FEF220004E0E6 /* SelectedImageViewModel.swift */; };
+		0122BE882B7FF0460004E0E6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE872B7FF0460004E0E6 /* ProfileView.swift */; };
 		017D07052B7D456C008F13AB /* PhotoCropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07042B7D456C008F13AB /* PhotoCropperApp.swift */; };
 		017D07072B7D456C008F13AB /* ImageCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07062B7D456C008F13AB /* ImageCropperView.swift */; };
 		017D07092B7D456F008F13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017D07082B7D456F008F13AB /* Assets.xcassets */; };
@@ -74,11 +76,13 @@
 		0122BE6E2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueButtonStyle.swift; sourceTree = "<group>"; };
 		0122BE702B7DDB480004E0E6 /* RoundedOutlineButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButtonStyle.swift; sourceTree = "<group>"; };
 		0122BE732B7ED29C0004E0E6 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
-		0122BE752B7EFE9F0004E0E6 /* ImageProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingView.swift; sourceTree = "<group>"; };
+		0122BE752B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingProgressView.swift; sourceTree = "<group>"; };
 		0122BE782B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewModel.swift; sourceTree = "<group>"; };
 		0122BE7A2B7F15B40004E0E6 /* SwiftUIGIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGIF.swift; sourceTree = "<group>"; };
 		0122BE7D2B7F24390004E0E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0122BE812B7F268A0004E0E6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		0122BE832B7FEF220004E0E6 /* SelectedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageViewModel.swift; sourceTree = "<group>"; };
+		0122BE872B7FF0460004E0E6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		017D07012B7D456C008F13AB /* PhotoCropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017D07042B7D456C008F13AB /* PhotoCropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropperApp.swift; sourceTree = "<group>"; };
 		017D07062B7D456C008F13AB /* ImageCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperView.swift; sourceTree = "<group>"; };
@@ -156,8 +160,9 @@
 			children = (
 				0122BE672B7D9F180004E0E6 /* ScaleSlider.swift */,
 				017D07062B7D456C008F13AB /* ImageCropperView.swift */,
-				0122BE752B7EFE9F0004E0E6 /* ImageProcessingView.swift */,
+				0122BE752B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift */,
 				0122BE7D2B7F24390004E0E6 /* ContentView.swift */,
+				0122BE872B7FF0460004E0E6 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				0122BE782B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift */,
+				0122BE832B7FEF220004E0E6 /* SelectedImageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -407,12 +413,14 @@
 				0122BE6C2B7DD4610004E0E6 /* UIImage+Helpers.swift in Sources */,
 				017D07052B7D456C008F13AB /* PhotoCropperApp.swift in Sources */,
 				0122BE6F2B7DD8600004E0E6 /* RoundedBlueButtonStyle.swift in Sources */,
+				0122BE882B7FF0460004E0E6 /* ProfileView.swift in Sources */,
 				0122BE742B7ED29C0004E0E6 /* ImageUploader.swift in Sources */,
-				0122BE762B7EFE9F0004E0E6 /* ImageProcessingView.swift in Sources */,
+				0122BE762B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift in Sources */,
 				0122BE792B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift in Sources */,
 				0122BE6A2B7DA10A0004E0E6 /* Color+Theme.swift in Sources */,
 				0122BE7B2B7F15B40004E0E6 /* SwiftUIGIF.swift in Sources */,
 				0122BE662B7D9AFA0004E0E6 /* Path+Clip.swift in Sources */,
+				0122BE842B7FEF220004E0E6 /* SelectedImageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
