@@ -16,4 +16,8 @@ extension Font {
   static func mediumInter(size: CGFloat) -> Font {
     return Font.custom("Inter-Medium", size: size)
   }
+  
+  static func boldInter(size: CGFloat) -> Font {
+    return Font.custom("Inter-Bold", size: size)
+  }
 }

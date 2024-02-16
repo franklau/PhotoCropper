@@ -8,15 +8,20 @@
 import Foundation
 import UIKit
 
-// https://stackoverflow.com/questions/29623187/upload-image-with-multipart-form-data-ios-in-swift
 
 enum ImageUploaderError: Error {
   case couldNotCreateImage(String?, URLResponse?)
 }
 
+protocol ImageUploaderDelegate: AnyObject {
+  func imageUploader(progress: Float)
+}
+
 class ImageUploader: NSObject {
   
   static let shared = ImageUploader()
+  
+  weak var delegate: ImageUploaderDelegate?
   
   static let baseURLString = "https://www.roomvu.com/api/v1"
   
@@ -26,6 +31,8 @@ class ImageUploader: NSObject {
     sessionConfig.timeoutIntervalForResource = 120
     return URLSession(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue.main)
   }()
+  
+  // https://stackoverflow.com/questions/29623187/upload-image-with-multipart-form-data-ios-in-swift
   
   func uploadImage(image: UIImage, completion: ((_ image: UIImage?, _ error: Error?) -> Void)? ) {
     // Convert UIImage to Data
@@ -88,7 +95,7 @@ class ImageUploader: NSObject {
 extension ImageUploader: URLSessionTaskDelegate {
   func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
     let uploadProgress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-    print("progress \(uploadProgress)")
+    delegate?.imageUploader(progress: uploadProgress)
   }
 }
 

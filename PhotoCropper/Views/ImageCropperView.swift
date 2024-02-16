@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ImageCropperView: View {
   
   @State private var scale: CGFloat = 1
   @State private var rotationAngle: Angle = Angle(degrees: 0)
   @State var image = UIImage(named: "image")!
-  @State var savedImage = UIImage(named: "image")!
   @State var isOn: Bool = true
+  
+  @EnvironmentObject var coordinator: Coordinator
+
   
   let screenWidth = UIScreen.main.bounds.width
   
@@ -23,7 +25,6 @@ struct ContentView: View {
   @State private var offset: CGPoint = .zero
   
     var body: some View {
-
       
       VStack(spacing: 0) {
         HStack {
@@ -48,10 +49,6 @@ struct ContentView: View {
         makeRemoveToggle()
         
         Spacer()
-        Image(uiImage: savedImage)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 200)
         
         makeButtonStack()
         
@@ -134,14 +131,10 @@ struct ContentView: View {
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
         let radius = (screenWidth - 2 * circlePadding) / 2.0
-        let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius)        
-          ImageUploader.shared.uploadImage(image: croppedImage!) { image, error in
-            if let error = error {
-              print("error \(error)")
-            } else if let image = image {
-              savedImage = image
-            }
-          }
+        if let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius) {
+          let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
+          coordinator.rootScreen = .imageProcessing(imageProcessorViewModel)
+        }
       }) {
         Text("Upload Headshot")
           .frame(maxWidth: .infinity)
@@ -164,6 +157,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-      ContentView()
+      ImageCropperView()
     }
 }
