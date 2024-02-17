@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @StateObject var coordinator = Coordinator()
+  @StateObject var profileImageViewModel = ProfileImageViewModel()
   
   init() {
     let appearance = UINavigationBarAppearance()
@@ -24,9 +25,11 @@ struct ContentView: View {
       switch coordinator.rootScreen {
       case .profile:
         ProfileView()
+          .environmentObject(profileImageViewModel)
       case .imageCropper:
         ImageCropperView()
           .environmentObject(coordinator)
+          .environmentObject(profileImageViewModel)
       case .imageProcessingProgress(let imageProcessingViewModel):
         ImageProcessingProgressView(viewModel: imageProcessingViewModel)
       }

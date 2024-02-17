@@ -8,6 +8,6 @@
 import Foundation
 import SwiftUI
 
-class SelectedImageViewModel: ObservableObject {
-  @Published var selectedImage: UIImage?
+class ProfileImageViewModel: ObservableObject {
+  @Published var image: UIImage?
 }

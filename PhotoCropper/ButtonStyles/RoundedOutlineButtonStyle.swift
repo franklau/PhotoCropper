@@ -26,7 +26,9 @@ struct RoundedOutlineButtonStyle: ButtonStyle {
 }
 
 struct ShortRoundedOutlineButtonStyle: ButtonStyle {
-
+  
+  @Environment(\.isEnabled) var isEnabled
+  
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .frame(height: 40)
@@ -34,7 +36,7 @@ struct ShortRoundedOutlineButtonStyle: ButtonStyle {
         .stroke(Color.buttonSecondaryBorder, lineWidth: 1.0)
       )
       .background(RoundedRectangle(cornerRadius: 8)
-        .fill(Color.white)
+        .fill(isEnabled ? Color.white : Color.gray)
         .foregroundColor(Color.buttonSecondaryFG))
         .contentShape(Rectangle())
       .font(Font.semiBoldInter(size: 16.0))

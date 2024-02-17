@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
   
   let horizontalPadding = 16
+  @EnvironmentObject var profileImageViewModel: ProfileImageViewModel
   
     var body: some View {
       NavigationView {
@@ -25,6 +26,7 @@ struct ProfileView: View {
               .frame(maxWidth: .infinity)
           }
           .buttonStyle(ShortRoundedOutlineButtonStyle())
+          .disabled(profileImageViewModel.image == nil)
           Spacer()
         }
         .navigationViewStyle(.stack)
@@ -33,7 +35,6 @@ struct ProfileView: View {
         .toolbar(content: {
           makeToolBar()
         })
-//        .navigationBarTitleDisplayMode(.inline)
       }
       .navigationViewStyle(.stack)
     }
@@ -60,7 +61,11 @@ struct ProfileView: View {
       Button {
         print("add profile image")
       } label: {
-        Image("profile-add")
+        if profileImageViewModel.image == nil {
+            Image("profile-add")
+        } else {
+          Image(uiImage: profileImageViewModel.image!)
+        }
       }
       VStack(alignment: .leading, spacing: 2) {
   

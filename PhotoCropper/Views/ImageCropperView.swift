@@ -16,7 +16,6 @@ struct ImageCropperView: View {
   
   @EnvironmentObject var coordinator: Coordinator
 
-  
   let screenWidth = UIScreen.main.bounds.width
   
   let horizontalPadding = 24.0
