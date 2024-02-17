@@ -26,12 +26,14 @@ struct ContentView: View {
       case .profile:
         ProfileView()
           .environmentObject(profileImageViewModel)
-      case .imageCropper:
-        ImageCropperView()
           .environmentObject(coordinator)
+      case .imageCropper(let image):
+        ImageCropperView(image: image)
           .environmentObject(profileImageViewModel)
+          .environmentObject(coordinator)
       case .imageProcessingProgress(let imageProcessingViewModel):
         ImageProcessingProgressView(viewModel: imageProcessingViewModel)
+          .environmentObject(coordinator)
       }
     }
 }

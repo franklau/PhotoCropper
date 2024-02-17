@@ -9,9 +9,13 @@ import Foundation
 import SwiftUI
 
 struct ImageProcessingProgressView: View {
+  
+  @EnvironmentObject var coordinator: Coordinator
+  @State private var showAlert = false
+  
   @StateObject var viewModel: ImageProcessingViewModel
   let loadingImageSideLength = 200.0
-  @State var hasStartedUpload = false
+  @State var hasStarteUploading = false
   
   var body: some View {
     VStack(spacing: 0) {
@@ -35,18 +39,29 @@ struct ImageProcessingProgressView: View {
         .multilineTextAlignment(.center)
         .foregroundColor(Color.buttonSecondaryFG)
         .font(Font.mediumInter(size: 14))
-      
     }
     .offset(x: 0, y: -100)
     .padding(.horizontal, 24)
-    .onAppear(perform: { 
-      if !hasStartedUpload {
-        viewModel.performUpload()
-        hasStartedUpload = true
+    .onAppear(perform: {
+      if !hasStarteUploading {
+        viewModel.performUpload { image, error in
+          if image == nil {
+            showAlert = true
+          } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              coordinator.rootScreen = .profile
+            }
+          }
+        }
+        hasStarteUploading = true
       }
     })
+    .alert("Sorry but your upload failed", isPresented: $showAlert) {
+      Button("Ok", role: .cancel) {
+        coordinator.rootScreen = .profile
+      }
+    }
   }
-  
 }
 
 

@@ -11,6 +11,7 @@ struct ProfileView: View {
   
   let horizontalPadding = 16
   @EnvironmentObject var profileImageViewModel: ProfileImageViewModel
+  @EnvironmentObject var coordinator: Coordinator
   
     var body: some View {
       NavigationView {
@@ -20,7 +21,7 @@ struct ProfileView: View {
           makeProfileInfoVStack()
             .padding(.bottom, 20)
           Button(action: {
-            print("Edit profile")
+            coordinator.rootScreen = .imageCropper(profileImageViewModel.image!)
            }) {
             Text("Edit Profile")
               .frame(maxWidth: .infinity)
@@ -58,15 +59,17 @@ struct ProfileView: View {
   
   private func makeProfileImageView() -> some View {
     HStack(spacing: 16) {
-      Button {
-        print("add profile image")
-      } label: {
+      NavigationLink(destination: ImagePickerView()) {
         if profileImageViewModel.image == nil {
             Image("profile-add")
         } else {
           Image(uiImage: profileImageViewModel.image!)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 80, height: 80)
         }
       }
+
       VStack(alignment: .leading, spacing: 2) {
   
         Text("Monica Dominique")

@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ImageCropperView: View {
   
+  let image: UIImage
+  
   @State private var scale: CGFloat = 1
   @State private var rotationAngle: Angle = Angle(degrees: 0)
-  @State var image = UIImage(named: "image")!
+  
   @State var isOn: Bool = true
   
   @EnvironmentObject var coordinator: Coordinator
+  @EnvironmentObject var profileImageViewModel: ProfileImageViewModel
 
   let screenWidth = UIScreen.main.bounds.width
   
@@ -31,7 +35,7 @@ struct ImageCropperView: View {
             .font(Font.semiBoldInter(size: 18))
           Spacer()
           Button(action: {
-            print("close tapped")
+            coordinator.rootScreen = .profile
           }) {
             Image("close")
           }
@@ -132,6 +136,7 @@ struct ImageCropperView: View {
         let radius = (screenWidth - 2 * circlePadding) / 2.0
         if let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius) {
           let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
+          profileImageViewModel.image = croppedImage
           coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
         }
       }) {
@@ -140,13 +145,12 @@ struct ImageCropperView: View {
       }
       .buttonStyle(RoundedBlueButtonStyle())
       Button(action: {
-        print("upload")
+        coordinator.rootScreen = .profile
       }) {
         Text("Cancel")
           .frame(maxWidth: .infinity)
       }
       .buttonStyle(RoundedOutlineButtonStyle())
-      
     }
     .padding(.horizontal, horizontalPadding)
     .padding(.bottom, 24)
@@ -156,6 +160,6 @@ struct ImageCropperView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-      ImageCropperView()
+      ImageCropperView(image: UIImage(named: "image")!)
     }
 }

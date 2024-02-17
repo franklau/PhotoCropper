@@ -21,11 +21,12 @@ class ImageProcessingViewModel: ObservableObject {
     self.image = image
   }
   
-  func performUpload() {
+  func performUpload(completion: ((UIImage?, Error?) -> Void)?) {
     let uploader = ImageUploader.shared
     uploader.delegate = self
     uploader.uploadImage(image: image) { image, error in
-      self.progress = 1 // TODO: handle error
+      completion?(image, error)
+      self.progress = 1 
     }
   }
 }

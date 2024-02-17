@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 enum Screen {
   case profile
-  case imageCropper
+  case imageCropper(UIImage)
   case imageProcessingProgress( ImageProcessingViewModel )
 }
 
