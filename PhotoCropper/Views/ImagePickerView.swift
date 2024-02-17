@@ -16,7 +16,15 @@ struct ImagePickerView: View {
   var body: some View {
     ScrollView {
       LazyVGrid(columns: [.init(.adaptive(minimum: 100, maximum: .infinity), spacing: 0)], spacing: 0) {
-        ForEach(photos, id: \.self) { asset in
+        Image(uiImage: UIImage(named:"camera")!)
+          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+          .contentShape(Rectangle())
+          .onTapGesture {
+            print("tap camera")
+          }
+        ForEach(photos.indices, id: \.self) { index in
+          let asset = photos[index]
+          
           AsyncImage(asset: asset)
             .onTapGesture {
               let options = PHImageRequestOptions()
@@ -24,7 +32,7 @@ struct ImagePickerView: View {
               options.deliveryMode = .highQualityFormat
               PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { result, _ in
                 DispatchQueue.main.async {
-                  if let result = result {                  
+                  if let result = result {
                     coordinator.rootScreen = .imageCropper(result)
                   }
                 }
@@ -70,21 +78,23 @@ struct ImagePickerView: View {
   }
 }
 
-
+// mostly from chatGPT
 struct AsyncImage: View {
   let asset: PHAsset
   
   @State private var image: UIImage?
   
-  // sizing into squares from https://talk.objc.io/episodes/S01E309-building-a-photo-grid-square-grid-cells
   var body: some View {
     if let image = image {
-      Image(uiImage: image)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+      // https://stackoverflow.com/questions/64420313/how-to-make-a-lazyvgrid-of-square-images
+      Color.clear
+        .aspectRatio(1, contentMode: .fill)
+        .overlay( Image(uiImage: image)
+          .resizable()
+          .scaledToFill()
+        )
         .clipped()
-        .aspectRatio(1, contentMode: .fit)
+        .contentShape(Rectangle()) // fixes the wrong image being tapped
         .onAppear {
           loadImage()
         }
@@ -101,7 +111,7 @@ struct AsyncImage: View {
     options.isSynchronous = false
     options.deliveryMode = .highQualityFormat
     
-    PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: options) { result, _ in
+    PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: options) { result, _ in
         image = result
       }
   }
