@@ -89,6 +89,28 @@ extension UIImage {
       return croppedImage
   }
   
+  func cropImageTo(sideLength: CGFloat) -> UIImage? {
+    guard let cgImage = cgImage else {
+      return nil
+    }
+    
+    let widthRatio =   CGFloat(cgImage.width) / CGFloat(size.width)
+    let heightRatio = CGFloat(cgImage.height) / CGFloat(size.height)
+    
+    let width = Int(sideLength * widthRatio)
+    let height = Int(sideLength * heightRatio)
+    
+    let x = cgImage.width / 2 - width / 2
+    let y = cgImage.height / 2 - height / 2
+    let cropRect = CGRect(x: x, y: y, width: width, height: height)
+    
+    guard let croppedCGImage = cgImage.cropping(to: cropRect) else {
+      return nil
+    }
+    
+    return UIImage(cgImage: croppedCGImage, scale: scale, orientation: imageOrientation)
+  }
+  
 }
 
 

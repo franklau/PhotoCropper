@@ -38,6 +38,7 @@ struct ImageCropperView: View {
             coordinator.rootScreen = .profile
           }) {
             Image("close")
+              .padding([.leading, .top, .bottom], 10)
           }
         }
         .frame(height: 68)
@@ -46,6 +47,7 @@ struct ImageCropperView: View {
         .background()
         
         makeTransformableImage()
+          .contentShape(Rectangle()) // fixes issue with tapping close button not working with specific images
         makeSlider()
         makeRotateButton()
         
@@ -133,11 +135,12 @@ struct ImageCropperView: View {
         let transformedImage = image.transformImage(scale: scale, rotationAngle: rotationAngle.radians)
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
-        let radius = (screenWidth - 2 * circlePadding) / 2.0
-        if let croppedImage = aspectFilledImage?.cropImageToCircularRegion(circleRadius: radius) {
+        let sideLength = (screenWidth - 2 * circlePadding)
+        if let croppedImage = aspectFilledImage?.cropImageTo(sideLength: sideLength) {
           let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
           profileImageViewModel.image = croppedImage
-          coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
+          coordinator.rootScreen = .profile
+//          coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
         }
       }) {
         Text("Upload Headshot")

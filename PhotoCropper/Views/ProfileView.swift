@@ -63,10 +63,12 @@ struct ProfileView: View {
         if profileImageViewModel.image == nil {
             Image("profile-add")
         } else {
+          let sideLength = 80.0
           Image(uiImage: profileImageViewModel.image!)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 80, height: 80)
+            .frame(width: sideLength, height: sideLength)
+            .cornerRadius(sideLength / 2)
         }
       }
 
