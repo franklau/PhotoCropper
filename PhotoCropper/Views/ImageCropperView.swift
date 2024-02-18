@@ -10,6 +10,8 @@ import UIKit
 
 struct ImageCropperView: View {
   
+  let screenHeight = UIScreen.main.bounds.height
+  let defaultScreenHeight = 1200.0
   let image: UIImage
   
   @State private var scale: CGFloat = 1
@@ -38,10 +40,10 @@ struct ImageCropperView: View {
             coordinator.rootScreen = .profile
           }) {
             Image("close")
-              .padding([.leading, .top, .bottom], 10)
+              .padding([.leading, .top, .bottom], 10.0 )
           }
         }
-        .frame(height: 68)
+        .frame(height: 68 * screenHeight / defaultScreenHeight)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, horizontalPadding)
         .background()
@@ -112,7 +114,7 @@ struct ImageCropperView: View {
           .foregroundColor(Color.buttonTertiearyFG)
           .font(Font.semiBoldInter(size: 14.0))
       }
-      .padding(.top, 14)
+      .padding(.top, 14 * screenHeight / defaultScreenHeight)
     }
   }
   
@@ -126,7 +128,7 @@ struct ImageCropperView: View {
                  .toggleStyle(SwitchToggleStyle(tint: Color.brandBlue))
     }
     .padding(.horizontal, horizontalPadding)
-    .padding(.top, 22)
+    .padding(.top, 22 * screenHeight / defaultScreenHeight)
   }
   
   private func makeButtonStack() -> some View {

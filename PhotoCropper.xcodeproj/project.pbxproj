@@ -32,6 +32,7 @@
 		0122BE842B7FEF220004E0E6 /* ProfileImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE832B7FEF220004E0E6 /* ProfileImageViewModel.swift */; };
 		0122BE882B7FF0460004E0E6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE872B7FF0460004E0E6 /* ProfileView.swift */; };
 		0122BE8B2B80388C0004E0E6 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE8A2B80388C0004E0E6 /* ImagePickerView.swift */; };
+		0122BE8F2B8191460004E0E6 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122BE8E2B8191460004E0E6 /* CameraPicker.swift */; };
 		017D07052B7D456C008F13AB /* PhotoCropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07042B7D456C008F13AB /* PhotoCropperApp.swift */; };
 		017D07072B7D456C008F13AB /* ImageCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D07062B7D456C008F13AB /* ImageCropperView.swift */; };
 		017D07092B7D456F008F13AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017D07082B7D456F008F13AB /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		0122BE832B7FEF220004E0E6 /* ProfileImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewModel.swift; sourceTree = "<group>"; };
 		0122BE872B7FF0460004E0E6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0122BE8A2B80388C0004E0E6 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		0122BE8E2B8191460004E0E6 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		017D07012B7D456C008F13AB /* PhotoCropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017D07042B7D456C008F13AB /* PhotoCropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropperApp.swift; sourceTree = "<group>"; };
 		017D07062B7D456C008F13AB /* ImageCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				0122BE7A2B7F15B40004E0E6 /* SwiftUIGIF.swift */,
+				0122BE8E2B8191460004E0E6 /* CameraPicker.swift */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				0122BE882B7FF0460004E0E6 /* ProfileView.swift in Sources */,
 				0122BE742B7ED29C0004E0E6 /* ImageUploader.swift in Sources */,
 				0122BE762B7EFE9F0004E0E6 /* ImageProcessingProgressView.swift in Sources */,
+				0122BE8F2B8191460004E0E6 /* CameraPicker.swift in Sources */,
 				0122BE792B7EFEDF0004E0E6 /* ImageProcessingViewModel.swift in Sources */,
 				0122BE6A2B7DA10A0004E0E6 /* Color+Theme.swift in Sources */,
 				0122BE7B2B7F15B40004E0E6 /* SwiftUIGIF.swift in Sources */,
@@ -589,6 +593,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCropper/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We want to use the camera for your profile picture";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We would like you access your photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -619,6 +624,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCropper/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We want to use the camera for your profile picture";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We would like you access your photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

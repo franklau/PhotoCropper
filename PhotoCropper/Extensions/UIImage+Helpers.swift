@@ -94,7 +94,7 @@ extension UIImage {
       return nil
     }
     
-    let widthRatio =   CGFloat(cgImage.width) / CGFloat(size.width)
+    let widthRatio =  CGFloat(cgImage.width) / CGFloat(size.width)
     let heightRatio = CGFloat(cgImage.height) / CGFloat(size.height)
     
     let width = Int(sideLength * widthRatio)

@@ -10,8 +10,11 @@ import Photos
 
 // from chat gpt
 struct ImagePickerView: View {
+  
+  @State private var showPicker: Bool  = false
   @State private var photos: [PHAsset] = []
   @EnvironmentObject var coordinator: Coordinator
+  
   
   var body: some View {
     ScrollView {
@@ -20,7 +23,7 @@ struct ImagePickerView: View {
           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
           .contentShape(Rectangle())
           .onTapGesture {
-            print("tap camera")
+            showPicker = true
           }
         ForEach(photos.indices, id: \.self) { index in
           let asset = photos[index]
@@ -40,6 +43,12 @@ struct ImagePickerView: View {
               print("asset \(asset)")
             }
         }
+      }
+    }
+    .fullScreenCover(isPresented: $showPicker) {
+      CameraPicker { image in
+        coordinator.rootScreen = .imageCropper(image)
+        // image your image
       }
     }
     .onAppear {
