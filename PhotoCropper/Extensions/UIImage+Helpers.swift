@@ -33,7 +33,7 @@ extension UIImage {
   }
   
   // from ChatGPT
-  func transformImage(scale: CGFloat, rotationAngle: CGFloat) -> UIImage? {
+  func transformImage(scale: CGFloat, rotationAngle: CGFloat, position: CGPoint) -> UIImage? {
       // Create a context to draw the transformed image
       UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
       defer { UIGraphicsEndImageContext() }
@@ -46,6 +46,7 @@ extension UIImage {
       context.rotate(by: rotationAngle)
       context.translateBy(x: -size.width / 2, y: -size.height / 2)
 
+      context.translateBy(x: position.x, y: position.y)
       // Draw the transformed image
       draw(in: CGRect(origin: .zero, size: size))
 

@@ -8,8 +8,8 @@
 import SwiftUI
 import Photos
 
-// from chat gpt
-struct ImagePickerView: View {
+// partially from chat gpt
+struct PhotoPickerView: View {
   
   @State private var showPicker: Bool  = false
   @State private var photos: [PHAsset] = []
@@ -128,6 +128,6 @@ struct AsyncImage: View {
 
 struct PhotoGalleryView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePickerView()
+        PhotoPickerView()
     }
 }

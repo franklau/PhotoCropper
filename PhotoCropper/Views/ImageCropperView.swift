@@ -10,9 +10,14 @@ import UIKit
 
 struct ImageCropperView: View {
   
+  // https://stackoverflow.com/questions/61305331/crop-image-according-to-rectangle-in-swiftui
+  
   let screenHeight = UIScreen.main.bounds.height
   let defaultScreenHeight = 1200.0
   let image: UIImage
+  
+  @State private var currentPosition: CGPoint = .zero
+  @State private var previousPosition: CGPoint = .zero
   
   @State private var scale: CGFloat = 1
   @State private var rotationAngle: Angle = Angle(degrees: 0)
@@ -67,17 +72,28 @@ struct ImageCropperView: View {
     return Image(uiImage: image)
       .resizable()
       .aspectRatio(contentMode: .fill)
-      .frame(width: screenWidth, height: screenWidth)
-      .clipped()
       .scaleEffect(scale)
       .rotationEffect(rotationAngle)
       .frame(width: screenWidth, height: screenWidth)
-      .clipped()
+      .offset(x: currentPosition.x, y: currentPosition.y)
       .overlay {
         Rectangle()
           .fill(Color.black.opacity(0.6))
           .mask(HoleShapeMask(in: CGRect(origin: .zero, size: size), inset: circlePadding).fill(style: FillStyle(eoFill: true)))
       }
+      .clipped()
+      .gesture(DragGesture()
+        .onChanged({ value in
+          currentPosition = CGPoint(x: value.translation.width + previousPosition.x,
+                                    y: value.translation.height + previousPosition.y)
+        })
+          .onEnded { value in
+            currentPosition = CGPoint(x: value.translation.width + previousPosition.x,
+                                     y: value.translation.height + previousPosition.y)
+            previousPosition = currentPosition
+          }
+      )
+    
   }
   
   private func makeSlider() -> some View {
@@ -134,7 +150,8 @@ struct ImageCropperView: View {
   private func makeButtonStack() -> some View {
     VStack(spacing: 10) {
       Button(action: {
-        let transformedImage = image.transformImage(scale: scale, rotationAngle: rotationAngle.radians)
+        
+        let transformedImage = image.transformImage(scale: scale, rotationAngle: rotationAngle.radians, position: currentPosition)
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
         let sideLength = (screenWidth - 2 * circlePadding)

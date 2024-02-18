@@ -59,7 +59,7 @@ struct ProfileView: View {
   
   private func makeProfileImageView() -> some View {
     HStack(spacing: 16) {
-      NavigationLink(destination: ImagePickerView()) {
+      NavigationLink(destination: PhotoPickerView()) {
         if profileImageViewModel.image == nil {
             Image("profile-add")
         } else {
