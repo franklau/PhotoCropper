@@ -159,7 +159,7 @@ struct ImageCropperView: View {
         if let croppedImage = aspectFilledImage?.cropImageTo(sideLength: sideLength) {
           let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
           profileImageViewModel.image = croppedImage
-          coordinator.rootScreen = .profile
+          coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
         }
       }) {
         Text("Upload Headshot")
