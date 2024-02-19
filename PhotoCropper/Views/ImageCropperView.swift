@@ -14,7 +14,8 @@ struct ImageCropperView: View {
   
   let screenHeight = UIScreen.main.bounds.height
   let defaultScreenHeight = 1200.0
-  let image: UIImage
+  @ObservedObject var viewModel: ImageCropperViewModel
+//  let image: UIImage
   
   @State private var currentPosition: CGPoint = .zero
   @State private var previousPosition: CGPoint = .zero
@@ -22,7 +23,7 @@ struct ImageCropperView: View {
   @State private var scale: CGFloat = 1
   @State private var rotationAngle: Angle = Angle(degrees: 0)
   
-  @State var isOn: Bool = true
+  @State var isOn: Bool = false
   
   @EnvironmentObject var coordinator: Coordinator
   @EnvironmentObject var profileImageViewModel: ProfileImageViewModel
@@ -57,11 +58,8 @@ struct ImageCropperView: View {
           .contentShape(Rectangle()) // fixes issue with tapping close button not working with specific images
         makeSlider()
         makeRotateButton()
-        
         makeRemoveToggle()
-        
         Spacer()
-        
         makeButtonStack()
         
       }
@@ -69,7 +67,7 @@ struct ImageCropperView: View {
   
   private func makeTransformableImage() -> some View {
     let size = CGSize(width: screenWidth, height: screenWidth)
-    return Image(uiImage: image)
+    return Image(uiImage: isOn ? viewModel.getNoBackgroundImage() : viewModel.originalImage)
       .resizable()
       .aspectRatio(contentMode: .fill)
       .scaleEffect(scale)
@@ -151,7 +149,10 @@ struct ImageCropperView: View {
     VStack(spacing: 10) {
       Button(action: {
         
-        let transformedImage = image.transformImage(scale: scale, rotationAngle: rotationAngle.radians, position: currentPosition)
+        let imageToTransform = isOn ? viewModel.getNoBackgroundImage() : viewModel.originalImage
+        let transformedImage = imageToTransform.transformImage(scale: scale,
+                                                                      rotationAngle: rotationAngle.radians,
+                                                                      position: currentPosition)
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
         let sideLength = (screenWidth - 2 * circlePadding)
@@ -159,7 +160,6 @@ struct ImageCropperView: View {
           let imageProcessorViewModel = ImageProcessingViewModel(image: croppedImage)
           profileImageViewModel.image = croppedImage
           coordinator.rootScreen = .profile
-//          coordinator.rootScreen = .imageProcessingProgress(imageProcessorViewModel)
         }
       }) {
         Text("Upload Headshot")
@@ -182,6 +182,7 @@ struct ImageCropperView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-      ImageCropperView(image: UIImage(named: "image")!)
+      let viewModel = ImageCropperViewModel(originalImage: UIImage(named: "image")!)
+      ImageCropperView(viewModel: viewModel)
     }
 }

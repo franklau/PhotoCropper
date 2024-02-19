@@ -28,7 +28,8 @@ struct ContentView: View {
           .environmentObject(profileImageViewModel)
           .environmentObject(coordinator)
       case .imageCropper(let image):
-        ImageCropperView(image: image)
+        let viewModel = ImageCropperViewModel(originalImage: image)
+        ImageCropperView(viewModel: viewModel)
           .environmentObject(profileImageViewModel)
           .environmentObject(coordinator)
       case .imageProcessingProgress(let imageProcessingViewModel):
