@@ -46,9 +46,11 @@ extension UIImage {
       context.rotate(by: rotationAngle)
       context.translateBy(x: -size.width / 2, y: -size.height / 2)
 
-      context.translateBy(x: position.x, y: position.y)
+      context.translateBy(x: position.x / scale, y: position.y / scale)
       // Draw the transformed image
       draw(in: CGRect(origin: .zero, size: size))
+    
+      print("image coordinate \(size.width)")
 
       // Retrieve the transformed image from the context
       guard let transformedImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }

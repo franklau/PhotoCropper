@@ -150,9 +150,15 @@ struct ImageCropperView: View {
       Button(action: {
         
         let imageToTransform = isOn ? viewModel.getNoBackgroundImage() : viewModel.originalImage
+        let screenToImageRatio = viewModel.originalImage.size.width / screenWidth
+        let xInImageCoordinates = screenToImageRatio * currentPosition.x
+        let yInImageCoordinates = screenToImageRatio * currentPosition.y
+        
+        let newPosition = CGPoint(x: xInImageCoordinates, y: yInImageCoordinates)
+        
         let transformedImage = imageToTransform.transformImage(scale: scale,
-                                                                      rotationAngle: rotationAngle.radians,
-                                                                      position: currentPosition)
+                                                               rotationAngle: rotationAngle.radians,
+                                                               position: newPosition)
         let aspectFillSize = CGSize(width: screenWidth, height: screenWidth)
         let aspectFilledImage = transformedImage?.aspectFilledImage(imageViewSize: aspectFillSize)
         let sideLength = (screenWidth - 2 * circlePadding)

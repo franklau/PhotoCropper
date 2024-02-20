@@ -120,7 +120,7 @@ struct AsyncImage: View {
     options.isSynchronous = false
     options.deliveryMode = .highQualityFormat
     
-    PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: options) { result, _ in
+    PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: options) { result, _ in
         image = result
       }
   }
